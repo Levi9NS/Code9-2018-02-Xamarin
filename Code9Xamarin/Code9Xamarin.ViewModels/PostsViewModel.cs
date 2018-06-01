@@ -57,6 +57,11 @@ namespace Code9Xamarin.ViewModels
             throw new NotImplementedException();
         }
 
+        private async Task LogOut()
+        {
+            throw new NotImplementedException();
+        }
+
         private ObservableCollection<Post> _postList;
         public ObservableCollection<Post> PostList
         {
@@ -149,25 +154,6 @@ namespace Code9Xamarin.ViewModels
             }
 
         }
-
-        private async Task LogOut()
-        {
-            try
-            {
-                IsBusy = true;
-                await _authenticationService.Logout();
-                _navigationService.SetRootPage(typeof(LoginViewModel));
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
 
         private async Task Delete(Guid id)
         {
