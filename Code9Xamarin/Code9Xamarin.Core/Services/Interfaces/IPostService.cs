@@ -9,8 +9,8 @@ namespace Code9Xamarin.Core.Services.Interfaces
     {
         Task<IEnumerable<PostDto>> GetAllPosts(string searchString, string token);
         Task<PostDto> GetPost(Guid id, string token);
-        //Task<bool> CreatePost(CreatePostDto post, string token);
-        //Task<bool> EditPost(EditPostDto post, Guid id, string token);
+        Task<bool> CreatePost(CreatePostDto post, string token);
+        Task<bool> EditPost(EditPostDto post, Guid id, string token);
         Task<bool> LikePost(Guid id, string token);
         Task<bool> DeletePost(Guid id, string token);
     }

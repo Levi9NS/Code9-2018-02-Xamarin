@@ -55,40 +55,6 @@ namespace Code9Xamarin.Core.Services
             return await _requestService.GetAsync<PostDto>(builder.Uri, token);
         }
 
-        //public async Task<bool> CreatePost(CreatePostDto post, string token)
-        //{
-        //    UriBuilder builder = new UriBuilder(_runtimeContext.BaseEndpoint)
-        //    {
-        //        Path = "api/posts"
-        //    };
-
-        //    if (await _authenticationService.IsTokenExpired(token))
-        //    {
-        //        await _authenticationService.RenewSession(_runtimeContext.UserId, _runtimeContext.RefreshToken);
-        //    }
-
-        //    await _requestService.PostAsync<CreatePostDto, string>(builder.Uri, post, token);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<bool> EditPost(EditPostDto post, Guid id, string token)
-        //{
-        //    UriBuilder builder = new UriBuilder(_runtimeContext.BaseEndpoint)
-        //    {
-        //        Path = $"api/posts/{id}"
-        //    };
-
-        //    if (await _authenticationService.IsTokenExpired(token))
-        //    {
-        //        await _authenticationService.RenewSession(_runtimeContext.UserId, _runtimeContext.RefreshToken);
-        //    }
-
-        //    await _requestService.PutAsync<EditPostDto, string>(builder.Uri, post, token);
-
-        //    return await Task.FromResult(true);
-        //}
-
         public async Task<bool> LikePost(Guid id, string token)
         {
             UriBuilder builder = new UriBuilder(_runtimeContext.BaseEndpoint)
@@ -121,6 +87,18 @@ namespace Code9Xamarin.Core.Services
             await _requestService.DeleteAsync<object, string>(builder.Uri, null, token);
 
             return await Task.FromResult(true);
+        }
+
+        public Task<bool> CreatePost(CreatePostDto post, string token)
+        {
+            //Path = "api/posts"
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> EditPost(EditPostDto post, Guid id, string token)
+        {
+            //$"api/posts/{id}"
+            throw new NotImplementedException();
         }
     }
 }

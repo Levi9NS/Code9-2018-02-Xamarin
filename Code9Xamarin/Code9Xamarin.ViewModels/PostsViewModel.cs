@@ -16,11 +16,11 @@ namespace Code9Xamarin.ViewModels
         private readonly IAuthenticationService _authenticationService;
 
         public Command<Guid> LikeCommand { get; }
-        //public Command CreatePostCommand { get; }
+        public Command CreatePostCommand { get; }
         public Command LogOutCommand { get; }
-        //public Command<Guid> CommentCommand { get; }
+        public Command<Guid> CommentCommand { get; }
         public Command<Guid> DeleteCommand { get; }
-        //public Command<Guid> EditCommand { get; }
+        public Command<Guid> EditCommand { get; }
         public Command SearchCommand { get; }
 
         public PostsViewModel(INavigationService navigationService, IAuthenticationService authenticationService, IPostService postService)
@@ -34,12 +34,27 @@ namespace Code9Xamarin.ViewModels
             _authenticationService = authenticationService;
 
             LikeCommand = new Command<Guid>(async (id) => await Like(id), (id) => !IsBusy);
-            //CreatePostCommand = new Command(async () => await CreatePost(), () => !IsBusy);
+            CreatePostCommand = new Command(async () => await CreatePost(), () => !IsBusy);
             LogOutCommand = new Command(async () => await LogOut(), () => !IsBusy);
-            //CommentCommand = new Command<Guid>(async (id) => await Comment(id), (id) => !IsBusy);
+            CommentCommand = new Command<Guid>(async (id) => await Comment(id), (id) => !IsBusy);
             DeleteCommand = new Command<Guid>(async (id) => await Delete(id), (id) => !IsBusy);
-            //EditCommand = new Command<Guid>(async (id) => await Edit(id), (id) => !IsBusy);
+            EditCommand = new Command<Guid>(async (id) => await Edit(id), (id) => !IsBusy);
             SearchCommand = new Command(async () => await Search(), () => !IsBusy);
+        }
+
+        private Task Edit(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Task CreatePost()
+        {
+            throw new NotImplementedException();
+        }
+
+        private Task Comment(Guid id)
+        {
+            throw new NotImplementedException();
         }
 
         private ObservableCollection<Post> _postList;
@@ -135,23 +150,6 @@ namespace Code9Xamarin.ViewModels
 
         }
 
-        //private async Task CreatePost()
-        //{
-        //    try
-        //    {
-        //        IsBusy = true;
-        //        await _navigationService.NavigateAsync<PostDetailsViewModel>();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
-
         private async Task LogOut()
         {
             try
@@ -170,40 +168,6 @@ namespace Code9Xamarin.ViewModels
             }
         }
 
-        //private async Task Comment(Guid id)
-        //{
-        //    try
-        //    {
-        //        IsBusy = true;
-        //        await _navigationService.NavigateAsync<CommentsViewModel>(id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
-
-        //private async Task Edit(Guid id)
-        //{
-        //    try
-        //    {
-        //        IsBusy = true;
-        //        var selectedPost = PostList.Single(x => x.Id == id);
-        //        await _navigationService.NavigateAsync<PostDetailsViewModel>(selectedPost);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
 
         private async Task Delete(Guid id)
         {
